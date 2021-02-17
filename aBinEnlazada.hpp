@@ -94,7 +94,8 @@ inline void Abin<T>::eliminarHijoDrcho(nodo n)
 
 
 template <typename T>
-inline void Abin<T>::eliminarRaiz(){
+inline void Abin<T>::eliminarRaiz()
+{
 	assert(r != NODO_NULO); // árbol no vacío
 	assert(r->hizq == NODO_NULO &&
 		   r->hder == NODO_NULO); // la raíz es hoja
@@ -103,45 +104,60 @@ inline void Abin<T>::eliminarRaiz(){
 	r = NODO_NULO;
 }
 
+
 template <typename T> 
-inline Abin<T>::~Abin(){destruirNodos(r);}
+inline Abin<T>::~Abin() { destruirNodos(r); }
+
 
 template <typename T> inline bool Abin<T>::arbolVacio() const{ return (r == NODO_NULO); }
 
+
 template <typename T>
-inline const T& Abin<T>::elemento(Abin<T>::nodo n) const{
+inline const T& Abin<T>::elemento(Abin<T>::nodo n) const
+{
 	assert(n != NODO_NULO);
 	return n->elto;
 }
 
+
 template <typename T>
-inline T& Abin<T>::elemento(Abin<T>::nodo n){
+inline T& Abin<T>::elemento(Abin<T>::nodo n)
+{
 	assert(n != NODO_NULO);
 	return n->elto;
 }
 
+
 template <typename T>
-inline typename Abin<T>::nodo Abin<T>::raiz() const{
+inline typename Abin<T>::nodo Abin<T>::raiz() const
+{
 	return r;
 }
 
+
 template <typename T> inline
-typename Abin<T>::nodo Abin<T>::padre(Abin<T>::nodo n) const{
+typename Abin<T>::nodo Abin<T>::padre(Abin<T>::nodo n) const
+{
 	assert(n != NODO_NULO);
 	return n->padre;
 }
 
+
 template <typename T> inline
-typename Abin<T>::nodo Abin<T>::hijoIzqdo(Abin<T>::nodo n) const{
+typename Abin<T>::nodo Abin<T>::hijoIzqdo(Abin<T>::nodo n) const
+{
 	assert(n != NODO_NULO);
 	return n->hizq;
 }
 
+
 template <typename T> inline
-typename Abin<T>::nodo Abin<T>::hijoDrcho(Abin<T>::nodo n) const{
+typename Abin<T>::nodo Abin<T>::hijoDrcho(Abin<T>::nodo n) const
+{
 	assert(n != NODO_NULO);
 	return n->hder;
 }
+
 
 template <typename T>
 inline Abin<T>::Abin(const Abin<T>& a)
@@ -149,8 +165,10 @@ inline Abin<T>::Abin(const Abin<T>& a)
 	r = copiar(a.r);
 }
 
+
 template <typename T>
-Abin<T>& Abin<T>::operator =(const Abin<T>& a){
+Abin<T>& Abin<T>::operator =(const Abin<T>& a)
+{
 	if (this != &a) // evitar autoasignación
 	{
 		this->~Abin();// vaciar el árbol
@@ -162,7 +180,8 @@ Abin<T>& Abin<T>::operator =(const Abin<T>& a){
 // Métodos privados
 // Destruye un nodo y todos sus descendientes
 template <typename T>
-void Abin<T>::destruirNodos(Abin<T>::nodo& n){
+void Abin<T>::destruirNodos(Abin<T>::nodo& n)
+{
 	if (n != NODO_NULO)
 	{
 		destruirNodos(n->hizq);
@@ -174,15 +193,21 @@ void Abin<T>::destruirNodos(Abin<T>::nodo& n){
 
 // Devuelve una copia de un nodo y todos sus descendientes
 template <typename T>
-typename Abin<T>::nodo Abin<T>::copiar(Abin<T>::nodo n){
+typename Abin<T>::nodo Abin<T>::copiar(Abin<T>::nodo n)
+{
 
 	nodo m = NODO_NULO;
-	if (n != NODO_NULO){
+	if (n != NODO_NULO)
+    {
 		m = new celda(n->elto);  // copiar n
 		m->hizq = copiar(n->hizq); // copiar subárbol izqdo.
-		if (m->hizq != NODO_NULO) m->hizq->padre = m;
+		if (m->hizq != NODO_NULO) 
+            m->hizq->padre = m;
+
 		m->hder = copiar(n->hder); // copiar subárbol drcho.
-		if (m->hder != NODO_NULO) m->hder->padre = m;
+
+		if (m->hder != NODO_NULO) 
+            m->hder->padre = m;
 	}
 	return m;
 }
