@@ -201,13 +201,11 @@ typename Abin<T>::nodo Abin<T>::copiar(Abin<T>::nodo n)
     {
 		m = new celda(n->elto);  // copiar n
 		m->hizq = copiar(n->hizq); // copiar subárbol izqdo.
-		if (m->hizq != NODO_NULO) 
-            m->hizq->padre = m;
+		if (m->hizq != NODO_NULO) m->hizq->padre = m;
 
 		m->hder = copiar(n->hder); // copiar subárbol drcho.
 
-		if (m->hder != NODO_NULO) 
-            m->hder->padre = m;
+		if (m->hder != NODO_NULO) m->hder->padre = m;
 	}
 	return m;
 }
