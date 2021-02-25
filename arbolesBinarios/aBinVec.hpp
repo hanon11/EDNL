@@ -123,10 +123,133 @@ void AbinVec<T>::eliminarHijoIzqdo(nodo n)
     --numNodos;
 }
  
- 
+template <typename T>
+void AbinVec<T>::eliminarHijoDrcho(nodo n)
+{
+    nodo hdrcho;
+    assert(n >= 0 && n < numNodos); //nodo valido
+    hdrcho = nodos[n].hder;
+    assert(hdrcho != NODO_NULO); //existe hijo derecho
+    assert(nodos[hdrcho].hizq == NODO_NULO && nodos[hdrcho].hder == NODO_NULO); //hijo derecho de n es hoja
+
+    if(hdrcho != numNodos-1)
+    {
+        //mover el ultimo nodo a la posicion del hijo derecho
+        nodos[hdrcho] = nodos[numNodos - 1];
+        //actualizar la posicion del hijo (izquierdo o derecho) en el padre del nodo movido
+        if(nodos[nodos[hdrcho].padre].hizq == numNodos - 1)
+            nodos[nodos[hdrcho].padre].hizq == hdrcho;
+        else 
+            nodos[nodos[hdrcho].padre].hder = hdrcho;
+        
+        //si el nodo movido tiene hijos, actualizar la posicion del padre
+        if(nodos[hdrcho].hizq != NODO_NULO)
+            nodos[nodos[hdrcho].hizq].padre = hdrcho;
+        if(nodos[hdrcho].hder != NODO_NULO)
+            nodos[nodos[hdrcho].hder].padre = hdrcho;
+    }
+    nodos[n].hder = NODO_NULO;
+    --numNodos;
+}
 
 
+template <typename T>
+inline void AbinVec<T>::eliminarRaiz()
+{
+    assert(numNodos == 1);
+    numNodos = 0;
+}
 
 
+template <typename T>
+inline bool AbinVec<T>::arbolVacio() const 
+{
+    return (numNodos == 0);
+}
 
-#endif
+template <typename T>
+inline const T& AbinVec<T>::elemento(nodo n) const
+{
+    assert(n >= 0 && n < numNodos);
+    return nodos[n].elto;
+}
+
+
+template <typename T>
+inline T& AbinVec<T>::elemento(nodo n)
+{
+    assert(n >= 0 && n < numNodos);
+    return nodos[n].elto;
+}
+
+
+template <typename T>
+inline typename AbinVec<T>::nodo AbinVec<T>::raiz() const 
+{
+    return (numNodos > 0) ? 0 : NODO_NULO;
+}
+
+
+template <typename T>
+inline typename AbinVec<T>::nodo AbinVec<T>::padre(nodo n) const
+{
+    assert(n >= 0 && n < numNodos);
+    return nodos[n].padre;
+}
+
+
+template <typename T>
+inline typename AbinVec<T>::nodo AbinVec<T>::hijoIzqdo(nodo n) const
+{
+    assert(n >= 0 && n < numNodos);
+    return nodos[n].hizq;
+}
+
+
+template <typename T>
+inline typename AbinVec<T>::nodo AbinVec<T>::hijoDrcho(nodo n) const
+{
+    assert(n >= 0 && n < numNodos);
+    return nodos[n].hder;
+}
+
+
+template <typename T>
+AbinVec<T>::AbinVec(const AbinVec<T>& A) :
+    nodos(new celda[A.maxNodos]),
+    maxNodos(A.maxNodos), 
+    numNodos(A.numNodos)
+{
+    for(nodo n = 0; n <= numNodos-1; n++)
+        nodos[n] = a.nodos[n];
+}
+
+
+template <typename T>
+inline AbinVec<T>::~AbinVec()
+{
+    delete[] nodos;
+}
+
+
+template <typename T>
+AbinVec<T>& AbinVec<T>::operator =(const AbinVec<T>& A)
+{
+    if(this != &A)
+    {
+        if(maxNodos != A.maxNodos)
+        {
+            delete [] nodos;
+            maxNodos = A.maxNodos;
+            nodos = new celda[maxNodos];
+        }
+    
+        //copiar el vector
+        for (nodo n = 0; n <= numNodos-1; n++)
+            nodos[n] = A.nodos[n];
+    }
+    return *this;
+}
+
+
+#endif //ABINVEC_HPP
