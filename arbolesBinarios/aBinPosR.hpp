@@ -1,6 +1,7 @@
 #ifndef ABIN_VEC1_H
 #define ABIN_VEC1_H
 #include <cassert>
+#include <cstdint>
 
 template <typename T> 
 class Abin 
@@ -8,23 +9,23 @@ class Abin
 public:
 	typedef int nodo; // índice del vector entre 0 y maxNodos-1
 	static const nodo NODO_NULO;
-	explicit Abin(size_t maxNodos, const T& e_nulo = T());//ctor
-	void insertarRaizB(const T& e);
-	void insertarHijoIzqdoB(nodo n, const T& e);
-	void insertarHijoDrchoB(nodo n, const T& e);
-	void eliminarHijoIzqdoB(nodo n);
-	void eliminarHijoDrchoB(nodo n);
+	explicit Abin(std::size_t maxNodos, const T& e_nulo = T());//ctor
+	void insertarRaiz(const T& e);
+	void insertarHijoIzqdo(nodo n, const T& e);
+	void insertarHijoDrcho(nodo n, const T& e);
+	void eliminarHijoIzqdo(nodo n);
+	void eliminarHijoDrcho(nodo n);
 	~Abin();// destructor
-	bool arbolVacioB() const;
-	void eliminarRaizB();
+	bool arbolVacio() const;
+	void eliminarRaiz();
 	const T& elemento(nodo n) const;// acceso a elto, lectura
 	T& elemento(nodo n);// acceso a elto, lectura/escritura
-	nodo raizB() const;
-	nodo padreB(nodo n) const;
-	nodo hijoIzqdoB(nodo n) const;
-	nodo hijoDrchoB(nodo n) const;
-	Abin(const Abin<T>& a);// ctor. de copia
-	Abin<T>& operator =(const Abin<T>& a);//asignación de árboles
+	nodo raiz() const;
+	nodo padre(nodo n) const;
+	nodo hijoIzqdo(nodo n) const;
+	nodo hijoDrcho(nodo n) const;
+	Abin(const Abin<T>& A);// ctor. de copia
+	Abin<T>& operator =(const Abin<T>& A);//asignación de árboles
 
 private:
 	T* nodos; // vector de nodos
@@ -34,10 +35,10 @@ private:
 
 /* Definición del nodo nulo */
 template <typename T>
-const typename Abin<T>::nodo Abin<T>::NODO_NULO(-1);
+const typename Abin<T>::nodo Abin<T>::NODO_NULO(SIZE_MAX);
 
 template <typename T>
-Abin<T>::Abin(size_t maxNodos, const T& e_nulo) :
+Abin<T>::Abin(std::size_t maxNodos, const T& e_nulo) :
 	nodos(new T[maxNodos]),
 	maxNodos(maxNodos),
 	ELTO_NULO(e_nulo)
@@ -48,7 +49,7 @@ Abin<T>::Abin(size_t maxNodos, const T& e_nulo) :
 }
 
 template <typename T>
-inline void Abin<T>::insertarRaizB(const T& e)
+inline void Abin<T>::insertarRaiz(const T& e)
 {
 	assert(nodos[0] == ELTO_NULO);   
 	// árbol vacío
@@ -56,7 +57,7 @@ inline void Abin<T>::insertarRaizB(const T& e)
 }
 
 template <typename T> 
-inline void Abin<T>::insertarHijoIzqdoB(Abin<T>::nodo n,const T& e)
+inline void Abin<T>::insertarHijoIzqdo(nodo n,const T& e)
 {
 	assert(n >= 0 && n <= maxNodos-1); // nodo válido
 	assert(nodos[n] != ELTO_NULO);     // nodo del árbol
@@ -66,7 +67,7 @@ inline void Abin<T>::insertarHijoIzqdoB(Abin<T>::nodo n,const T& e)
 }
 
 template <typename T> 
-inline void Abin<T>::insertarHijoDrchoB(Abin<T>::nodo n,const T& e)
+inline void Abin<T>::insertarHijoDrcho(nodo n,const T& e)
 {
 	assert(n >= 0 && n < maxNodos-1);  // nodo válido
 	assert(nodos[n] != ELTO_NULO);     // nodo del árbol
@@ -76,7 +77,7 @@ inline void Abin<T>::insertarHijoDrchoB(Abin<T>::nodo n,const T& e)
 }
 
 template <typename T> 
-inline void Abin<T>::eliminarHijoIzqdoB(Abin<T>::nodo n)
+inline void Abin<T>::eliminarHijoIzqdo(nodo n)
 {
 	assert(n >= 0 && n <= maxNodos-1); // nodo válido
 	assert(nodos[n] != ELTO_NULO);     // nodo del árbol
@@ -93,7 +94,7 @@ inline void Abin<T>::eliminarHijoIzqdoB(Abin<T>::nodo n)
 }
 
 template <typename T> 
-inline void Abin<T>::eliminarHijoDrchoB(Abin<T>::nodo n)
+inline void Abin<T>::eliminarHijoDrcho(Abin<T>::nodo n)
 {
 	assert(n >= 0 && n <= maxNodos-1); // nodo válido
 	assert(nodos[n] != ELTO_NULO);     // nodo del árbol
@@ -110,11 +111,10 @@ inline void Abin<T>::eliminarHijoDrchoB(Abin<T>::nodo n)
 }
 
 template <typename T>
-inline void Abin<T>::eliminarRaizB()
+inline void Abin<T>::eliminarRaiz()
 {
 	assert(nodos[0] != ELTO_NULO);  // árbol no vacío
-	assert(nodos[1] == ELTO_NULO &&
-		   nodos[2] == ELTO_NULO);  // la raíz es hoja
+	assert(nodos[1] == ELTO_NULO && nodos[2] == ELTO_NULO);  // la raíz es hoja
 	
 	nodos[0] = ELTO_NULO;
 }
@@ -126,10 +126,10 @@ inline Abin<T>::~Abin()
 }
 
 template <typename T>
-inline bool Abin<T>::arbolVacioB() const{return (nodos[0] == ELTO_NULO);}
+inline bool Abin<T>::arbolVacio() const{return (nodos[0] == ELTO_NULO);}
 
 template <typename T>
-inline const T& Abin<T>::elemento(Abin<T>::nodo n) const
+inline const T& Abin<T>::elemento(nodo n) const
 {
 	assert(n >= 0 && n <= maxNodos-1); // nodo válido
 	assert(nodos[n] != ELTO_NULO);     // nodo del árbol
@@ -137,7 +137,7 @@ inline const T& Abin<T>::elemento(Abin<T>::nodo n) const
 }
 
 template <typename T>
-inline T& Abin<T>::elemento(Abin<T>::nodo n)
+inline T& Abin<T>::elemento(nodo n)
 {
 	assert(n >= 0 && n <= maxNodos-1);  // nodo válido
 	assert(nodos[n] != ELTO_NULO);      // nodo del árbol
@@ -145,13 +145,13 @@ inline T& Abin<T>::elemento(Abin<T>::nodo n)
 }
 
 template <typename T>
-inline typename Abin<T>::nodo Abin<T>::raizB() const
+inline typename Abin<T>::nodo Abin<T>::raiz() const
 {
 	return (nodos[0] == ELTO_NULO) ? NODO_NULO : 0;
 }
 
 template <typename T> 
-inline typename Abin<T>::nodo Abin<T>::padreB(Abin<T>::nodo n) const
+inline typename Abin<T>::nodo Abin<T>::padre(nodo n) const
 {
 	assert(n >= 0 && n <= maxNodos-1);  // nodo válido
 	assert(nodos[n] != ELTO_NULO);      // nodo del árbol
@@ -160,7 +160,7 @@ inline typename Abin<T>::nodo Abin<T>::padreB(Abin<T>::nodo n) const
 }
 
 template <typename T> 
-inline typename Abin<T>::nodo Abin<T>::hijoIzqdoB(Abin<T>::nodo n) const
+inline typename Abin<T>::nodo Abin<T>::hijoIzqdo(nodo n) const
 {
 	assert(n >= 0 && n <= maxNodos-1); // nodo válido
 	assert(nodos[n] != ELTO_NULO);     // nodo del árbol
@@ -168,40 +168,40 @@ inline typename Abin<T>::nodo Abin<T>::hijoIzqdoB(Abin<T>::nodo n) const
 }
 
 template <typename T> 
-inline typename Abin<T>::nodo Abin<T>::hijoDrchoB(Abin<T>::nodo n) const
+inline typename Abin<T>::nodo Abin<T>::hijoDrcho(nodo n) const
 {
 	assert(n >= 0 && n <= maxNodos-1);  // nodo válido
 	assert(nodos[n] != ELTO_NULO);      // nodo del árbol
 	return (2*n+2 >= maxNodos || nodos[2*n+2] == ELTO_NULO) ? NODO_NULO : 2*n+2;
 }
 
-template <typename T>Abin<T>::Abin(const Abin<T>& a) :
+template <typename T>Abin<T>::Abin(const Abin<T>& A) :
 	nodos(new T[a.maxNodos]),
-	maxNodos(a.maxNodos),
-	ELTO_NULO(a.ELTO_NULO)
+	maxNodos(A.maxNodos),
+	ELTO_NULO(A.ELTO_NULO)
 {
 	// copiar el vector
 	for (nodo n = 0; n <= maxNodos-1; n++)
-		nodos[n] = a.nodos[n];
+		nodos[n] = A.nodos[n];
 }
 
 template <typename T>
-Abin<T>& Abin<T>::operator =(const Abin<T>& a)
+Abin<T>& Abin<T>::operator =(const Abin<T>& A)
 {
-	if (this != &a)   // evitar autoasignación
+	if (this != &A)   // evitar autoasignación
 	{
 		// Destruir el vector y crear uno nuevo si es necesario
-		if (maxNodos != a.maxNodos)
+		if (maxNodos != A.maxNodos)
 		{
 			delete[] nodos;
-			maxNodos = a.maxNodos;
+			maxNodos = A.maxNodos;
 			nodos = new T[maxNodos];
 		}
 
 		ELTO_NULO = a.ELTO_NULO;
 		// Copiar el vector
 		for (nodo n = 0; n <= maxNodos-1; n++)
-			nodos[n] = a.nodos[n];
+			nodos[n] = A.nodos[n];
 	}
 	return *this;
 }
