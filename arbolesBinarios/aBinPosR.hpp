@@ -2,7 +2,9 @@
 #define ABIN_VEC1_H
 #include <cassert>
 
-template <typename T> class Abin {
+template <typename T> 
+class Abin 
+{
 public:
 	typedef int nodo; // índice del vector
 					  // entre 0 y maxNodos-1
