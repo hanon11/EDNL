@@ -6,8 +6,7 @@ template <typename T>
 class Abin 
 {
 public:
-	typedef int nodo; // índice del vector
-					  // entre 0 y maxNodos-1
+	typedef int nodo; // índice del vector entre 0 y maxNodos-1
 	static const nodo NODO_NULO;
 	explicit Abin(size_t maxNodos, const T& e_nulo = T());//ctor
 	void insertarRaizB(const T& e);
