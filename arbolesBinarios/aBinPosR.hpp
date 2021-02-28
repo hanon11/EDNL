@@ -85,8 +85,7 @@ inline void Abin<T>::eliminarHijoIzqdo(nodo n)
 	assert(nodos[2*n+1] != ELTO_NULO); // n tiene hijo izqdo.
 
 	if (4*n+4 < maxNodos) // caben los hijos del hijo izqdo. de n
-		assert(nodos[4*n+3] == ELTO_NULO &&   // hijo izqdo. de
-			   nodos[4*n+4] == ELTO_NULO);    // n es hoja
+		assert(nodos[4*n+3] == ELTO_NULO && nodos[4*n+4] == ELTO_NULO);    //hijo izq de n es hoja
 	else if (4*n+3 < maxNodos) //sólo cabe h. izq. de h. izq. de n
 		assert(nodos[4*n+3] == ELTO_NULO); //hijo izq. de n es hoja
 	
@@ -102,8 +101,7 @@ inline void Abin<T>::eliminarHijoDrcho(Abin<T>::nodo n)
 	assert(nodos[2*n+2] != ELTO_NULO); // n tiene hijo drcho.
 	
 	if (4*n+6 < maxNodos) // caben los hijos del hijo drcho. de n
-		assert(nodos[4*n+5] == ELTO_NULO && // hijo drcho. de
-			   nodos[4*n+6] == ELTO_NULO);  // n es hoja
+		assert(nodos[4*n+5] == ELTO_NULO && nodos[4*n+6] == ELTO_NULO);  //hijo drch de n es hoja
 	else if (4*n+5 < maxNodos) //solo cabe h. izq. de h. drch de n
 		assert(nodos[4*n+5] == ELTO_NULO); //hijo drch de n es hoja
 	
