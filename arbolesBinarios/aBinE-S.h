@@ -1,6 +1,6 @@
 #ifndef ABIN_E_S_H
 #define ABIN_E_S_H
-
+#include "aBinEnlazada.hpp"
 #include <cassert>
 #include <iostream>
 #include <fstream>
