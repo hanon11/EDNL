@@ -53,3 +53,12 @@ int profundidad(typename Abin<T>::nodo n, Abin<T>& A)
 
     return profundidad;
 }
+//forma recursiva
+template <typename T>
+int profundidadRec(typename Abin<T>::nodo n, Abin<T>& A)
+{
+    if (n == Abin<T>::NODO_NULO)
+        return -1;
+    else 
+        return 1 + profundidadRec(A.padre(n), A);
+}
