@@ -25,6 +25,8 @@ public:
     nodo hijoDrcho(nodo n) const;
     Abin(const Abin<T>& a); //constructor de copia
     Abin<T>& operator =(const Abin<T>& A); //asignacion
+    int profundidad(nodo n);
+    int altura(nodo n);
     ~Abin(); //destructor
 private:
     struct celda
@@ -190,6 +192,32 @@ void Abin<T>::destruirNodos(Abin<T>::nodo& n)
 		n = NODO_NULO;
 	}
 }
+
+template <typename T>
+int Abin<T>::altura(typename Abin<T>::nodo n)
+{
+    if(n == Abin<T>::NODO_NULO)
+        return -1;
+    else 
+        return 1 + std::max(alturaRec(n -> hizq), alturaRec(n -> hder));
+
+}
+
+
+template <typename T>
+int Abin<T>::profundidad(typename Abin<T>::nodo n)
+{
+    int profundidad = 0;
+
+    while (n != r)
+    {
+        profundidad++;
+        n = n -> padre;
+    }
+
+    return profundidad;
+}
+
 
 // Devuelve una copia de un nodo y todos sus descendientes
 template <typename T>

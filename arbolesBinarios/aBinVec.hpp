@@ -25,6 +25,8 @@ public:
     nodo hijoDrcho(nodo n) const;
     AbinVec(const AbinVec<T>& A);
     AbinVec<T>& operator=(const AbinVec<T>& A);
+    int altura(nodo n);
+    int profundidad(nodo n);
     ~AbinVec();
 private:
     struct celda{
@@ -49,6 +51,32 @@ inline AbinVec<T>::AbinVec(std::size_t maxNodos) :
     numNodos(0)
 {}
 
+
+template <typename T>
+int AbinVec<T>::altura(nodo n)
+{
+    if(n == Abin<T>::NODO_NULO)
+        return -1;
+    else 
+        return 1 + std::max(alturaRec(nodos[n].hizq), alturaRec(nodos[n].hder));
+
+}
+
+
+template <typename T>
+int AbinVec<T>::profundidad(nodo n)
+{
+    int profundidad = 0;
+    nodo aux = n;
+
+    while (aux != 0)
+    {
+        profundidad++;
+        aux = nodos[aux].padre;
+    }
+
+    return profundidad;
+}
 
 template <typename T>
 inline void AbinVec<T>::insertarRaiz(const T& e)
