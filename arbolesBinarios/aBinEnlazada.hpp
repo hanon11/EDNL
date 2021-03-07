@@ -1,6 +1,7 @@
 #ifndef ABIN_HPP
 #define ABIN_HPP
 #include <cassert>
+#include <cmath>
 
 template <typename T>
 class Abin
@@ -199,7 +200,7 @@ int Abin<T>::altura(typename Abin<T>::nodo n)
     if(n == Abin<T>::NODO_NULO)
         return -1;
     else 
-        return 1 + std::max(alturaRec(n -> hizq), alturaRec(n -> hder));
+        return 1 + std::fmax(altura(n -> hizq), altura(n -> hder));
 
 }
 
