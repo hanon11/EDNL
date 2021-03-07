@@ -77,10 +77,17 @@ int desequilibrio(const Abin<T>& A)
 
 
 template <typename T>
-int desequilibrio_rec(const Abin<T> &A, typename Abin<T>::nodo n)
+int desequilibrio_rec(const Abin<T>& A, typename Abin<T>::nodo n)
 {
     if (nA == Abin<T>::NODO_NULO)
         return 0;
     else
         return std::max(std::abs(A.alturaB(A.hijoDrchoB(A)) - A.alturaB(A.hijoIzqdoB(A))), std::max(desequilibrio_rec(A, A.hijoDrchoB(A)),desequilibrio_rec(A,A.hijoIzqdoB(A))));
+}
+
+//EJERCICIO 7
+template <typename T>
+bool pseudocompleto(const Abin<T>& A)
+{
+
 }
