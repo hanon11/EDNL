@@ -24,6 +24,8 @@ bool similaresRec(typename Abin<T>::nodo nA, const Abin<T>& A, typename Abin<T>:
     }
 }
 
+
+//EJERCICIO 2
 template <typename T>
 Abin<T> reflejado(const Abin<T>& A)
 {
