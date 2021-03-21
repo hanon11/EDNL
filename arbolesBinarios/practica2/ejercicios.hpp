@@ -19,7 +19,7 @@ bool similaresRec(typename Abin<T>::nodo nA, const Abin<T>& A, typename Abin<T>:
             return false;
         else
         {
-            return (similares_rec(A.hijoIzqdoB(nA), A, B.hijoIzqdoB(n2), B) && similares_rec(A.hijoDrchoB(nA), A, B.hijoDrchoB(nB), B));
+            return (similares_rec(A.hijoIzqdoB(nA), A, B.hijoIzqdoB(nB), B) && similares_rec(A.hijoDrchoB(nA), A, B.hijoDrchoB(nB), B));
         }
     }
 }
@@ -54,3 +54,55 @@ void reflejadoRec(typename Abin<T>::nodo nA, const Abin<T>& A, typename Abin<T>:
         reflejo_rec(A.hijoDrchoB(nA),A,B.hijoIzqdoB(nB),B);
     }
 }
+
+//EJERCICIO 3
+union expresion{
+    double operando;
+    char operador;
+};
+
+
+double evaluar(const Abin<expresion>& A)
+{
+    if(A.arbolVacio())
+        return 0;
+    else
+        return evaluarRec(A.raiz(), A);
+}
+
+
+double evaluarRec(typename Abin<expresion>::nodo nA, const Abin<expresion>& A)
+{
+    if(A.hijoIzqdo(nA) == Abin<expresion>::NODO_NULO)
+        return A.elemento(nA).operando;
+    else
+    {
+        switch (A.elemento(nA).operador)
+        {
+        case '+':
+            return evaluarRec(A.hijoIzqdo(nA), A) + evaluarRec(A.hijoDrcho(nA), A);
+        case '-':
+            return evaluarRec(A.hijoIzqdo(nA), A) - evaluarRec(A.hijoDrcho(nA), A);
+        case '*':
+            return evaluarRec(A.hijoIzqdo(nA), A) * evaluarRec(A.hijoDrcho(nA), A);
+        default:
+            return evaluarRec(A.hijoIzqdo(nA), A) / evaluarRec(A.hijoDrcho(nA), A);
+        }
+    }
+}
+
+
+
+
+//EJERCICIO 4
+
+
+
+
+
+
+
+
+
+
+
