@@ -4,7 +4,7 @@
 #include <cassert>
 #include <iostream>
 #include <fstream>
-
+#include "aGenEnlazada.hpp"
 using std::istream;
 using std::ostream;
 using std::cin;
@@ -21,7 +21,7 @@ void rellenarAgen(Agen<T>& A, const T& fin)
    T e;
 
    assert(A.arbolVacio());
-   cout << "Ra�z (Fin = " << fin << "): "; cin >> e;
+   cout << "Raíz (Fin = " << fin << "): "; cin >> e;
    if (e != fin) {
       A.insertarRaiz(e);
       rellenarDescendientes(A.raiz(), A, fin);

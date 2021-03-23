@@ -112,7 +112,7 @@ void Agen<T>::eliminarHijoIzqdo(Agen<T>::nodo n)
     nodos[hizqdo].hijos.fin()); // de n es una hoja.
     // Eliminar hijo izqdo. de n.
     nodos[hizqdo].padre = NODO_NULO; // Marcar celda libre.
-    Lh.eliminar(lh.primera()); // Eliminar primer nodo de la
+    Lh.eliminar(Lh.primera()); // Eliminar primer nodo de la
     // lista de hijos de n.
     --numNodos;
 }
@@ -245,7 +245,7 @@ Agen<T>& Agen<T>::operator =(const Agen<T>& A)
         }
         numNodos = A.numNodos;
         for (nodo n = 0; n <= maxNodos-1; n++) // Copiar el vector.
-            nodos[n] = a.nodos[n];
+            nodos[n] = A.nodos[n];
     }
     return *this;
 }
