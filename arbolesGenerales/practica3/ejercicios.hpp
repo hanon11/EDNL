@@ -13,19 +13,19 @@ unsigned gradoRec(typename Agen<T>::nodo nA, const Agen<T>& A)
         return 0;
     else
     {
-        unsigned numHijos = numHijos(nA, A);
-        typename Agen<T>::nodo hijo = nA.hijoIzqdo();
+        unsigned nHijos = numHijos(nA, A);
+        typename Agen<T>::nodo hijo = A.hijoIzqdo(nA);
         unsigned max = 0;
         while(hijo != Agen<T>::NODO_NULO)
         {
-            std::max(max, gradoRec(hijo, A));
-            hijo = hijo.hijoIzqdo();
+            max = std::max(max, gradoRec(hijo, A));
+            hijo = A.hermDrcho(hijo);
         }
-        return std::max(max, numHijos);
+        return std::max(max, nHijos);
     }
 }
 
-
+template <typename T>
 unsigned numHijos(typename Agen<T>::nodo nA, const Agen<T>& A)
 {
     int numHijos = 0;
