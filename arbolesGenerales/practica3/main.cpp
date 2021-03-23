@@ -19,5 +19,5 @@ int main ()
     fe.close();
     cout << "\n*** Mostrar árbol B ***\n";
     imprimirAgen(B); // En std::cout
-    cout << "El grado de el arbol es: " << grado(B) << endl;
+    cout << "El grado del arbol es: " << grado(B) << endl;
 } 
