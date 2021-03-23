@@ -1,4 +1,4 @@
-#include "../aBinE-S.h"
+#include "../aBinE-S.hpp"
 #include "../aBinEnlazada.hpp"
 #include "ejercicios.hpp"
 #include <iostream>
