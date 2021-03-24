@@ -7,14 +7,14 @@ unsigned grado(const Agen<T>& A)
 }
 
 template <typename T>
-unsigned gradoRec(typename Agen<T>::nodo nA, const Agen<T>& A)
+unsigned gradoRec(typename Agen<T>::nodo n, const Agen<T>& A)
 {
-    if(nA == Agen<T>::NODO_NULO)
+    if(n == Agen<T>::NODO_NULO)
         return 0;
     else
     {
-        unsigned nHijos = numHijos(nA, A);
-        typename Agen<T>::nodo hijo = A.hijoIzqdo(nA);
+        unsigned nHijos = numHijos(n, A);
+        typename Agen<T>::nodo hijo = A.hijoIzqdo(n);
         unsigned max = 0;
         while(hijo != Agen<T>::NODO_NULO)
         {
@@ -26,10 +26,10 @@ unsigned gradoRec(typename Agen<T>::nodo nA, const Agen<T>& A)
 }
 
 template <typename T>
-unsigned numHijos(typename Agen<T>::nodo nA, const Agen<T>& A)
+unsigned numHijos(typename Agen<T>::nodo n, const Agen<T>& A)
 {
     int numHijos = 0;
-    typename Agen<T>::nodo hijo = A.hijoIzqdo(nA);
+    typename Agen<T>::nodo hijo = A.hijoIzqdo(n);
     while (hijo != Agen<T>::NODO_NULO)
     {
         numHijos++;
@@ -48,13 +48,13 @@ unsigned gradoNuevo(const Agen<T>& A)
 }
 
 template <typename T>
-unsigned gradoRecNuevo(typename Agen<T>::nodo nA, const Agen<T>& A)
+unsigned gradoRecNuevo(typename Agen<T>::nodo n, const Agen<T>& A)
 {
     if(nA == Agen<T>::NODO_NULO)
         return 0;
     else
     {
-        typename Agen<T>::nodo hijo = A.hijoIzqdo(nA);
+        typename Agen<T>::nodo hijo = A.hijoIzqdo(n);
         unsigned max = 0, cont = 0;
         while(hijo != Agen<T>::NODO_NULO)
         {
@@ -74,6 +74,25 @@ int profundidadRec(typename Agen<T>::nodo n, const Agen<T>& A)
         return -1;
     else 
         return 1 + profundidadRec(A.padre(n), A);
+}
+
+
+//EJERCICIO 3
+template <typename T>
+unsigned desequilibrio(const Agen<T>& A)
+{
+    return desequilibrioRec(A.raiz(), A);
+}
+
+template <typename T>
+unsigned desequilibrioRec(typename Agen<T>::nodo n, const Agen<T>& A)
+{
+    if(n == Agen<T>::NODO_NULO)
+        return 0;
+    else
+    {
+
+    }
 }
 
 //EJERCICIO 4
