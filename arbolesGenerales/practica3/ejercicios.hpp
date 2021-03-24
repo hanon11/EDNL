@@ -40,6 +40,32 @@ unsigned numHijos(typename Agen<T>::nodo nA, const Agen<T>& A)
 }
 
 
+//OTRA FORMA EJERCICIO 1
+template <typename T>
+unsigned gradoNuevo(const Agen<T>& A)
+{
+    return gradoRec(A.raiz(), A);
+}
+
+template <typename T>
+unsigned gradoRecNuevo(typename Agen<T>::nodo nA, const Agen<T>& A)
+{
+    if(nA == Agen<T>::NODO_NULO)
+        return 0;
+    else
+    {
+        typename Agen<T>::nodo hijo = A.hijoIzqdo(nA);
+        unsigned max = 0, cont = 0;
+        while(hijo != Agen<T>::NODO_NULO)
+        {
+            max = std::max(max, gradoRecNuevo(hijo, A));
+            hijo = A.hermDrcho(hijo);
+            cont++;
+        }
+        return std::max(max, cont);
+    }
+}
+
 //EJERCICIO 2
 template <typename T>
 int profundidadRec(typename Agen<T>::nodo n, const Agen<T>& A)
