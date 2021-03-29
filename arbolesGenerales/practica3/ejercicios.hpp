@@ -85,7 +85,7 @@ unsigned altura(typename Agen<T>:: nodo n, const Agen<T>& A)
 {
      if(n == Agen<T>::NODO_NULO)
      {
-         return -1;
+        return -1;
      }
      else
      {
@@ -105,18 +105,18 @@ unsigned alturaMin(typename Agen<T>:: nodo n, const Agen<T>& A)
 {
      if(n == Agen<T>::NODO_NULO)
      {
-         return -1;
+        return -1;
      }
      else
      {
         typename Agen<T>::nodo hijo = A.hijoIzqdo(n);
-        unsigned alturaMax = 0;
+        unsigned alturaMin = altura(n, A);
         while(hijo != Agen<T>::NODO_NULO)
         {
-            alturaMax = std::min(alturaMax, altura(hijo,A));
+            alturaMin = std::min(alturaMin, altura(hijo,A));
             hijo = A.hermDrcho(hijo);
         }
-        return 1 + alturaMax;
+        return 1 + alturaMin;
      }
 }
 
