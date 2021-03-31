@@ -1,4 +1,6 @@
 #include "../aGenEnlazada.hpp"
+#include <algorithm>
+#include <cmath>
 //EJERCICIO1
 template <typename T>
 unsigned grado(const Agen<T>& A)
@@ -79,6 +81,46 @@ int profundidadRec(typename Agen<T>::nodo n, const Agen<T>& A)
 
 //EJERCICIO 3
 template <typename T>
+unsigned altura(typename Agen<T>:: nodo n, const Agen<T>& A)
+{
+     if(n == Agen<T>::NODO_NULO)
+     {
+        return -1;
+     }
+     else
+     {
+        typename Agen<T>::nodo hijo = A.hijoIzqdo(n);
+        unsigned alturaMax = 0;
+        while(hijo != Agen<T>::NODO_NULO)
+        {
+            alturaMax = std::max(alturaMax, altura(hijo,A));
+            hijo = A.hermDrcho(hijo);
+        }
+        return 1 + alturaMax;
+     }
+}
+
+template <typename T>
+unsigned alturaMin(typename Agen<T>:: nodo n, const Agen<T>& A)
+{
+     if(n == Agen<T>::NODO_NULO)
+     {
+        return -1;
+     }
+     else
+     {
+        typename Agen<T>::nodo hijo = A.hijoIzqdo(n);
+        unsigned alturaMin = altura(n, A);
+        while(hijo != Agen<T>::NODO_NULO)
+        {
+            alturaMin = std::min(alturaMin, altura(hijo,A));
+            hijo = A.hermDrcho(hijo);
+        }
+        return 1 + alturaMin;
+     }
+}
+
+template <typename T>
 unsigned desequilibrio(const Agen<T>& A)
 {
     return desequilibrioRec(A.raiz(), A);
@@ -91,7 +133,14 @@ unsigned desequilibrioRec(typename Agen<T>::nodo n, const Agen<T>& A)
         return 0;
     else
     {
-
+        unsigned desequilibrioMax = 0, alturaMinima = alturaMin(n, A), desNodo = std::fabs(altura(n, A) - alturaMinima );
+        typename Agen<T>::nodo hijo = A.hijoIzqdo(n);
+        while(hijo != Agen<T>::NODO_NULO)
+        {
+            desequilibrioMax = std::max(desNodo, desequilibrioRec(hijo, A));
+            hijo = A.hermDrcho(hijo);
+        }
+        return desequilibrioMax;
     }
 }
 
