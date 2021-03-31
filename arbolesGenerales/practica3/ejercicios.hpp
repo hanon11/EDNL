@@ -50,7 +50,7 @@ unsigned gradoNuevo(const Agen<T>& A)
 template <typename T>
 unsigned gradoRecNuevo(typename Agen<T>::nodo n, const Agen<T>& A)
 {
-    if(nA == Agen<T>::NODO_NULO)
+    if(n == Agen<T>::NODO_NULO)
         return 0;
     else
     {
