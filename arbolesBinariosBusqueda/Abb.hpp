@@ -61,7 +61,7 @@ void Abb<T>::insertar(const T& e)
 
 template <typename T>
 void Abb<T>::eliminar(const T& e)
-    {
+{
     if (r != nullptr) 
     { // Árbol no vacío.
         if (e < r->elto) // Quitar e del subárbol izqdo.
