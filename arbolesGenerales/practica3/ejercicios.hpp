@@ -103,12 +103,12 @@ unsigned altura(typename Agen<T>:: nodo n, const Agen<T>& A)
 template <typename T>
 unsigned alturaMin(typename Agen<T>:: nodo n, const Agen<T>& A)
 {
-     if(n == Agen<T>::NODO_NULO)
-     {
+    if(n == Agen<T>::NODO_NULO)
+    {
         return -1;
-     }
-     else
-     {
+    }
+    else
+    {
         typename Agen<T>::nodo hijo = A.hijoIzqdo(n);
         unsigned alturaMin = altura(n, A);
         while(hijo != Agen<T>::NODO_NULO)
@@ -117,7 +117,7 @@ unsigned alturaMin(typename Agen<T>:: nodo n, const Agen<T>& A)
             hijo = A.hermDrcho(hijo);
         }
         return 1 + alturaMin;
-     }
+    }
 }
 
 template <typename T>
