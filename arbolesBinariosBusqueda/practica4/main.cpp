@@ -6,15 +6,12 @@ const int fin = -1;
 int main()
 {
     Abb<int> A, B;
-	A.insertar(8);
-	A.insertar(6);
-	A.insertar(12);
-	A.insertar(10);
-	A.insertar(4);
+	A.insertar(1);
 	A.insertar(2);
-	A.insertar(7);
+	A.insertar(3);
+	A.insertar(4);
+	A.insertar(5);
 	imprimirAbb(A);
-	podaRec(6, A);
-	std::cout << "Despues de la poda: ";
-	imprimirAbb(A);
+	equilibrio(A, B);
+	imprimirAbb(B);
 }
