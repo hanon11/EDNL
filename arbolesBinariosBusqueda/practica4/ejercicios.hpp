@@ -132,3 +132,83 @@ void intersec(const Abb<T>& A, const Abb<T>& B, Abb<T>& ANB)
 }
 
 
+//EJERCICIO 5
+template <typename T>
+void diferencia(const Abb<T>& A, const Abb<T>& B, Abb<T>& ANB)
+{
+    Abb<T> final;
+    diferenciaRec1(A, B, ANB);
+    diferenciaRec2(A, B, ANB);
+    equilibrio(ANB, final);
+    ANB = final;
+}
+
+template <typename T>
+void diferenciaRec1(const Abb<T>& A, const Abb<T>& B, Abb<T>& ANB)
+{
+    if(!A.vacio() && !B.vacio())
+    {
+        if(A.buscar(B.elemento()).vacio())
+        {
+            ANB.insertar(B.elemento());
+            diferenciaRec1(A, B.izqdo(), ANB);
+            diferenciaRec1(A, B.drcho(), ANB);
+        }
+        else
+        {
+            diferenciaRec1(A, B.izqdo(), ANB);
+            diferenciaRec1(A, B.drcho(), ANB);
+        }
+    }
+}
+
+template <typename T>
+void diferenciaRec2(const Abb<T>& A, const Abb<T>& B, Abb<T>& ANB)
+{
+    if(!A.vacio())
+    {
+        if(B.buscar(A.elemento()).vacio())
+        {
+            ANB.insertar(A.elemento());
+            diferenciaRec2(A.izqdo(), B, ANB);
+            diferenciaRec2(A.drcho(), B, ANB);
+        }
+        else
+        {
+            diferenciaRec2(A.izqdo(), B, ANB);
+            diferenciaRec2(A.drcho(), B, ANB);
+        }
+    }
+}
+
+
+//reusando codigo
+template <typename T>
+void dif(const Abb<T>& A, const Abb<T>& B, Abb<T>& ANB)
+{
+    Abb<T> un, inter, final;
+    union_(A, B, un);
+    intersec(A, B, inter);
+    difRec(un, inter, ANB);
+    equilibrio(ANB, final);
+    ANB = final;
+}
+
+template <typename T>
+void difRec(const Abb<T>& un, const Abb<T>& inter, Abb<T>& ANB)
+{
+    if(!un.vacio())
+    {
+        if(inter.buscar(un.elemento()).vacio())
+        {
+            ANB.insertar(un.elemento());
+            difRec(un.izqdo(), inter, ANB);
+            difRec(un.drcho(), inter, ANB);
+        }
+        else
+        {
+            difRec(un.izqdo(), inter, ANB);
+            difRec(un.drcho(), inter, ANB);
+        }
+    }
+}
