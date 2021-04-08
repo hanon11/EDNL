@@ -65,3 +65,70 @@ void equilibrioRec(std::vector<T>& vec, Abb<T>& B, unsigned fin, unsigned ini)
         equilibrioRec(vec, B, fin, pos + 1);
     }
 }
+
+
+//EJERCICIO 3
+template <typename T>
+void union_(const Abb<T>& A, const Abb<T>& B, Abb<T>& AUB)
+{
+    Abb<T> final;
+    union1(A,B,AUB);
+    union2(A,B,AUB);
+    equilibrio(AUB, final);
+    AUB = final;
+    
+}
+
+template <typename T>
+void union1(const Abb<T>& A, const Abb<T>& B, Abb<T>& AUB)
+{
+    if(!A.vacio())
+    {
+        AUB.insertar(A.elemento());
+        union1(A.izqdo(), B, AUB);
+        union1(A.drcho(), B, AUB);
+    }
+}
+
+template <typename T>
+void union2(const Abb<T>& A, const Abb<T>& B, Abb<T>& AUB)
+{
+    if(!B.vacio())
+    {
+        if(A.buscar(B.elemento()).vacio())
+        {
+            AUB.insertar(B.elemento());
+            union_(A, B.izqdo(), AUB);
+            union_(A, B.drcho(), AUB);
+        }
+        else
+        {
+            union_(A, B.izqdo(), AUB);
+            union_(A, B.drcho(), AUB);
+        }
+    }
+}
+
+
+//EJERCICIO 4
+template <typename T>
+void intersec(const Abb<T>& A, const Abb<T>& B, Abb<T>& ANB)
+{
+    if(!A.vacio() && !B.vacio())
+    {
+        if(!A.buscar(B.elemento()).vacio())
+        {
+            ANB.insertar(B.elemento());
+            intersec(A, B.izqdo(), ANB);
+            intersec(A, B.drcho(), ANB);
+        }
+        else
+        {
+            intersec(A, B.izqdo(), ANB);
+            intersec(A, B.drcho(), ANB);
+        }
+    }
+    
+}
+
+
