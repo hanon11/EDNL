@@ -1,6 +1,7 @@
 #ifndef APO_HPP
 #define APO_HPP
 #include <cassert>
+
 template <typename T> class Apo 
 {
 public:
@@ -18,9 +19,9 @@ private:
     T* nodos; // vector de nodos
     size_t maxNodos; // tamaño del vector
     size_t numNodos; // último nodo del árbol
-    nodo padre(nodo i) const { return (i-1)/2; }
-    nodo hIzq(nodo i) const { return 2*i+1; }
-    nodo hDer(nodo i) const { return 2*i+2; }
+    nodo padre(nodo i) const { return (i - 1) / 2; }
+    nodo hIzq(nodo i) const { return 2 * i + 1; }
+    nodo hDer(nodo i) const { return 2 * i + 2; }
     void flotar(nodo i);
     void hundir(nodo i);
 };
@@ -29,7 +30,7 @@ template <typename T>
 inline Apo<T>::Apo(size_t maxNodos) :
     nodos(new T[maxNodos]),
     maxNodos(maxNodos),
-    numNodos(0) /* Apo vacío.*/{}
+    numNodos(0){} /* Apo vacío.*/
 
 template <typename T>
 inline const T& Apo<T>::cima() const
@@ -49,7 +50,7 @@ inline void Apo<T>::insertar(const T& e)
 {
     assert(numNodos < maxNodos); // Apo no lleno.
     nodos[numNodos] = e;
-    if (++numNodos > 1)
+    if (++numNodos > 1) //si APO no estaba vacio
         flotar(numNodos-1); // Reordenar.
 }
 
@@ -73,7 +74,7 @@ inline void Apo<T>::suprimir()
     {
         nodos[0] = nodos[numNodos];
         if (numNodos > 1) // Quedan dos o más elementos.
-        hundir(0); // Reordenar.
+            hundir(0); // Reordenar.
     }
 }
 
@@ -114,11 +115,11 @@ Apo<T>::Apo(const Apo<T>& A) :
     {
     // Copiar el vector.
         for (nodo n = 0; n < numNodos; n++)
-        nodos[n] = A.nodos[n];
+            nodos[n] = A.nodos[n];
     }
 
 template <typename T>
-Apo<T>& Apo<T>::operator =(const Apo<T>& A)
+Apo<T>& Apo<T>::operator=(const Apo<T>& A)
 {
     if (this != &A) // Evitar autoasignación.
     { // Destruir el vector y crear uno nuevo si es necesario.
@@ -131,7 +132,7 @@ Apo<T>& Apo<T>::operator =(const Apo<T>& A)
         numNodos = A.numNodos;
         // Copiar el vector
         for (nodo n = 0; n < numNodos; n++)
-            nodos[n] = a.nodos[n];
+            nodos[n] = A.nodos[n];
     }
     return *this;
 }
