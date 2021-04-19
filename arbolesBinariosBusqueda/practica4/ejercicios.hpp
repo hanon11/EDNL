@@ -98,13 +98,13 @@ void union2(const Abb<T>& A, const Abb<T>& B, Abb<T>& AUB)
         if(A.buscar(B.elemento()).vacio())
         {
             AUB.insertar(B.elemento());
-            union_(A, B.izqdo(), AUB);
-            union_(A, B.drcho(), AUB);
+            union2(A, B.izqdo(), AUB);
+            union2(A, B.drcho(), AUB);
         }
         else
         {
-            union_(A, B.izqdo(), AUB);
-            union_(A, B.drcho(), AUB);
+            union2(A, B.izqdo(), AUB);
+            union2(A, B.drcho(), AUB);
         }
     }
 }
