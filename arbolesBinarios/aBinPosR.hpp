@@ -7,29 +7,29 @@ template <typename T>
 class Abin 
 {
 public:
-	typedef int nodo; // índice del vector entre 0 y maxNodos-1
+	typedef std::size_t nodo; // índice del vector,
+	// entre 0 y maxNodos-1
 	static const nodo NODO_NULO;
-	explicit Abin(std::size_t maxNodos, const T& e_nulo = T());//ctor
+	explicit Abin(std::size_t maxNodos, const T& e_nulo = T());
 	void insertarRaiz(const T& e);
 	void insertarHijoIzqdo(nodo n, const T& e);
 	void insertarHijoDrcho(nodo n, const T& e);
 	void eliminarHijoIzqdo(nodo n);
 	void eliminarHijoDrcho(nodo n);
-	~Abin();// destructor
-	bool arbolVacio() const;
 	void eliminarRaiz();
-	const T& elemento(nodo n) const;// acceso a elto, lectura
-	T& elemento(nodo n);// acceso a elto, lectura/escritura
+	bool arbolVacio() const;
+	const T& elemento(nodo n) const; // acceso a elto, lectura
+	T& elemento(nodo n); // acceso a elto, lectura/escritura
 	nodo raiz() const;
 	nodo padre(nodo n) const;
 	nodo hijoIzqdo(nodo n) const;
 	nodo hijoDrcho(nodo n) const;
-	Abin(const Abin<T>& A);// ctor. de copia
-	Abin<T>& operator =(const Abin<T>& A);//asignación de árboles
-
+	Abin(const Abin<T>& a); // ctor. de copia
+	Abin<T>& operator =(const Abin<T>& a); // asig. de árboles
+	~Abin();  
 private:
 	T* nodos; // vector de nodos
-	int maxNodos;// tamaño del vector
+	std::size_t maxNodos;// tamaño del vector
 	T ELTO_NULO; // marca celdas vacías
 };
 
@@ -43,7 +43,7 @@ Abin<T>::Abin(std::size_t maxNodos, const T& e_nulo) :
 	maxNodos(maxNodos),
 	ELTO_NULO(e_nulo)
 {
-	// marcar todas las celdas libres
+	// Marcar todas las celdas libres.
 	for (nodo n = 0; n <= maxNodos-1; n++)
 		nodos[n] = ELTO_NULO;
 }
@@ -174,7 +174,7 @@ inline typename Abin<T>::nodo Abin<T>::hijoDrcho(nodo n) const
 }
 
 template <typename T>Abin<T>::Abin(const Abin<T>& A) :
-	nodos(new T[a.maxNodos]),
+	nodos(new T[A.maxNodos]),
 	maxNodos(A.maxNodos),
 	ELTO_NULO(A.ELTO_NULO)
 {
@@ -196,7 +196,7 @@ Abin<T>& Abin<T>::operator =(const Abin<T>& A)
 			nodos = new T[maxNodos];
 		}
 
-		ELTO_NULO = a.ELTO_NULO;
+		ELTO_NULO = A.ELTO_NULO;
 		// Copiar el vector
 		for (nodo n = 0; n <= maxNodos-1; n++)
 			nodos[n] = A.nodos[n];
