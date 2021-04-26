@@ -31,7 +31,7 @@ bool valido(typename Abin<T>::nodo n, const Abin<T>& A)
             return true;
         if (A.hijoDrcho(A.hijoDrcho(n)) != Abin<T>::NODO_NULO && A.hijoDrcho(A.hijoIzqdo(n)) != Abin<T>::NODO_NULO && A.hijoIzqdo(A.hijoIzqdo(n)) != Abin<T>::NODO_NULO && A.hijoIzqdo(A.hijoDrcho(n)) == Abin<T>::NODO_NULO)
             return true;
-        if (A.hijoDrcho(A.hijoDrcho(n)) != Abin<T>::NODO_NULO && A.hijoDrcho(A.hijoIzqdo(n)) != Abin<T>::NODO_NULO && A.hijoIzqdo(A.hijoDrcho(n)) != Abin<T>::NODO_NULO && A.hijoIzqdo(A.hijoIzqdo(n)) != Abin<T>::NODO_NULO)
+        if (A.hijoDrcho(A.hijoDrcho(n)) != Abin<T>::NODO_NULO && A.hijoDrcho(A.hijoIzqdo(n)) != Abin<T>::NODO_NULO && A.hijoIzqdo(A.hijoDrcho(n)) != Abin<T>::NODO_NULO && A.hijoIzqdo(A.hijoIzqdo(n)) == Abin<T>::NODO_NULO)
             return true;
     }
     return false;
