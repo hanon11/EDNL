@@ -1,8 +1,10 @@
 #ifndef APO_HPP
 #define APO_HPP
 #include <cassert>
+using std::size_t;
 
-template <typename T> class Apo 
+template <typename T> 
+class Apo 
 {
 public:
     explicit Apo(size_t maxNodos); // constructor
