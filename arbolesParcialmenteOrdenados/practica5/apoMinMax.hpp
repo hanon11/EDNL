@@ -64,7 +64,7 @@ void Apo<T>::add(const T& elem)
     {
         while(nivel != 1 && centinela)
         {
-            if(nodos[padre(padre(numNodos-1))] < nodos[numNodos-1]) //si el nodo es mayor que su abuelo(otro nivel min), floto el elemento
+            if(nodos[padre(padre(numNodos-1))] < nodos[numNodos-1]) //si el nodo es mayor que su abuelo(otro nivel max), floto el elemento
             {
                 T aux = nodos[padre(padre(numNodos-1))];
                 nodos[padre(padre(numNodos-1))] = nodos[numNodos-1];
