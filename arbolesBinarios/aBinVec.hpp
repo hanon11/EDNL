@@ -133,7 +133,7 @@ void AbinVec<T>::eliminarHijoIzqdo(nodo n)
     assert(nodos[hizqdo].hizq == NODO_NULO && nodos[hizqdo].hder == NODO_NULO);
     //hijo izq de n es hoja
 
-    if(hizqdo!= numNodos-1)
+    if(hizqdo != numNodos-1)
     {// Mover el último nodo a la posición del hijo izqdo.
         nodos[hizqdo] = nodos[numNodos-1];// Actualizar la posición del hijo (izquierdo o derecho) en el padre del nodo movido.
         if(nodos[nodos[hizqdo].padre].hizq == numNodos-1)
@@ -147,7 +147,7 @@ void AbinVec<T>::eliminarHijoIzqdo(nodo n)
             nodos[nodos[hizqdo].hder].padre = hizqdo;
     }
     
-    nodos[n].hizq= NODO_NULO;
+    nodos[n].hizq = NODO_NULO;
     --numNodos;
 }
  

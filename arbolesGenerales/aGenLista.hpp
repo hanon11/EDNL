@@ -2,7 +2,7 @@
 #define AGEN_LIS_H
 #include <cassert>
 #include "listaEnlazada.hpp"
-
+using std::size_t;
 template <typename T> class Agen 
 {
 public:
