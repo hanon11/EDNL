@@ -91,7 +91,37 @@ vector<tCoste> DijkstraInv(const GrafoP<tCoste>& G,
 {
    typedef typename GrafoP<tCoste>::vertice vertice;
    vertice v, w;
-   std::vector<tCoste>
+   const size_t n = G.numVert();
+   vector<bool> S(n, false);                  // Conjunto de vértices vacío.
+   vector<tCoste> D;                          // Costes mínimos desde destino.
+
+   // Iniciar D y P con caminos directos desde el vértice destino
+   D = G[destino];
+   D[destino] = 0;                             // Coste destino-destino es 0.
+   P = vector<vertice>(n, destino);
+   S[destino] = true;
+
+   for (std::size_t i = 1; i <= n-2; i++) 
+   {
+      tCoste costeMin = GrafoP<tCoste>::INFINITO;
+      for (v = 0; v < n - 1; v++)
+         if (!S[v] && D[v] <= costeMin) {
+            costeMin = D[v];
+            w = v;
+         }
+      S[w] = true;                          // Incluir vértice w en S.
+      
+      for (v = 0; v < n; v++)
+         if (!S[v]) {
+            tCoste vwD = suma(G[w][v], D[w]);
+            if (vwD < D[v]) {
+               D[v] = vwD;
+               P[v] = w;
+            }
+         }
+   }
+   return D;
+
 
 }
 
