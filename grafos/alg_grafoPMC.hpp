@@ -63,11 +63,12 @@ Funciones:
 #define ALG_GRAFO_P_H
 
 #include <cassert>
-#include "grafoPMC.h"       // grafo ponderado
+#include "grafoPMC.hpp"       // grafo ponderado
 #include <vector>           // para Dijkstra
-#include "matriz.h"         // para Floyd
-#include "apo.h"            // para Prim y Kruskall
-#include "particion.h"      // para Kruskall
+#include "matriz.hpp"         // para Floyd
+#include "apo.hpp"            // para Prim y Kruskall
+#include "particion.hpp"      // para Kruskall
+using namespace std;
 
 /*----------------------------------------------------------------------------*/
 /* Caminos de coste mínimo                                                    */
@@ -80,6 +81,18 @@ template <typename tCoste> tCoste suma(tCoste x, tCoste y)
       return INFINITO;
    else
       return x + y;
+}
+
+
+template <typename tCoste>
+vector<tCoste> DijkstraInv(const GrafoP<tCoste>& G,
+                        typename GrafoP<tCoste>::vertice destino,
+                        vector<typename GrafoP<tCoste>::vertice>& P)
+{
+   typedef typename GrafoP<tCoste>::vertice vertice;
+   vertice v, w;
+   std::vector<tCoste>
+
 }
 
 template <typename tCoste>

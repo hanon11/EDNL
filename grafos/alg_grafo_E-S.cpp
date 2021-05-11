@@ -10,7 +10,7 @@
 /* ©2016 José Fidel Argudo                                */
 /*--------------------------------------------------------*/
 
-#include "alg_grafo_E-S.h"
+#include "alg_grafo_E-S.hpp"
 #include <iomanip>           // std::setw
 
 // Inserción de matriz<bool> en un flujo de salida (para probar Warshall)

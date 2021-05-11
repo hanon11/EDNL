@@ -1,21 +1,21 @@
 /*--------------------------------------------------------*/
 /* particion.cpp                                          */
 /*                                                        */
-/* Implementación de la clase Particion:                  */
-/* Bosque de árboles con unión por altura y búsqueda con  */
-/* compresión de caminos.                                 */
+/* Implementaciï¿½n de la clase Particion:                  */
+/* Bosque de ï¿½rboles con uniï¿½n por altura y bï¿½squeda con  */
+/* compresiï¿½n de caminos.                                 */
 /*--------------------------------------------------------*/
 
-#include "particion.h"
+#include "particion.hpp"
 
-// El árbol con mayor altura se convierte en subárbol del otro.
+// El ï¿½rbol con mayor altura se convierte en subï¿½rbol del otro.
 void Particion::unir(int a, int b)
 {
    if (padre[b] < padre[a])
       padre[a] = b;
    else {
       if (padre[a] == padre[b])
-         padre[a]--; // El árbol resultante tiene un nivel más.
+         padre[a]--; // El ï¿½rbol resultante tiene un nivel mï¿½s.
       padre[b] = a;
    }
 }
@@ -26,8 +26,8 @@ int Particion::encontrar(int x) const
 
    while (padre[raiz] > -1)
       raiz = padre[raiz];
-   // Compresión del camino de x a raíz: Los nodos
-   // del camino se hacen hijos de la raíz
+   // Compresiï¿½n del camino de x a raï¿½z: Los nodos
+   // del camino se hacen hijos de la raï¿½z
    while (padre[x] > -1) {
       y = padre[x];
       padre[x] = raiz;

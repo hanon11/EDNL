@@ -8,7 +8,7 @@
 /* ©2016 José Fidel Argudo                                */
 /*--------------------------------------------------------*/
 
-#include "grafoLA.h"
+#include "grafoLA.hpp"
 #include <fstream>
 #include <sstream>
 #include <iomanip>

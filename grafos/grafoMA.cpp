@@ -8,7 +8,7 @@
 /* ©2016 José Fidel Argudo                                */
 /*--------------------------------------------------------*/
 
-#include "grafoMA.h"
+#include "grafoMA.hpp"
 #include <fstream>
 #include <sstream>
 #include <iomanip>

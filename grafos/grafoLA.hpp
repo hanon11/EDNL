@@ -4,22 +4,22 @@
 /* clase Grafo: Listas de adyacencia de un grafo.         */
 /*                                                        */
 /* Estructuras de Datos no Lineales                       */
-/* ©2016 José Fidel Argudo                                */
+/* ï¿½2016 Josï¿½ Fidel Argudo                                */
 /*--------------------------------------------------------*/
 /*
-Tipo público:
+Tipo pï¿½blico:
 
    Grafo::vertice // un valor entre 0 y Grafo::numVert()-1
 
-Métodos públicos:
+Mï¿½todos pï¿½blicos:
 
    explicit Grafo(size_t n);
-      Grafo de n vértices sin aristas.
+      Grafo de n vï¿½rtices sin aristas.
 
    explicit Grafo(const std::string& nf);
-      Grafo extraído desde un fichero de texto de nombre nf,
-      que contiene el número de vértices seguido en cada línea
-      de un vértice, el carácter ':' y la lista de sus adyacentes
+      Grafo extraï¿½do desde un fichero de texto de nombre nf,
+      que contiene el nï¿½mero de vï¿½rtices seguido en cada lï¿½nea
+      de un vï¿½rtice, el carï¿½cter ':' y la lista de sus adyacentes
       separados por espacios.
       Ejemplo:
       5
@@ -30,16 +30,16 @@ Métodos públicos:
       4: 2
 
    size_t numVert() const;
-      Número de vértices
+      Nï¿½mero de vï¿½rtices
 
    const Lista<vertice>& adyacentes(vertice v) const;
    Lista<vertice>& adyacentes(vertice v);
-      Vértices adyacentes a v.
+      Vï¿½rtices adyacentes a v.
 
 Sobrecarga de operador externo:
 
    std::ostream& operator <<(std::ostream& os, const Grafo& G);
-      Inserción de un Grafo en un flujo de salida.
+      Inserciï¿½n de un Grafo en un flujo de salida.
 
 ----------------------------------------------------------*/
 
@@ -48,7 +48,7 @@ Sobrecarga de operador externo:
 #include <vector>
 #include <iostream>
 #include <string>
-#include "listaenla.h"
+#include "listaenla.hpp"
 
 class Grafo {
 public:
@@ -60,10 +60,10 @@ public:
    const Lista<vertice>& adyacentes(vertice v) const {return ady[v];}
    Lista<vertice>& adyacentes(vertice v) {return ady[v];}
 private:
-   std::vector< Lista<vertice> > ady; // vector de listas de vértices
+   std::vector< Lista<vertice> > ady; // vector de listas de vï¿½rtices
 };
 
-// Inserción de un grafo en un flujo de salida.
+// Inserciï¿½n de un grafo en un flujo de salida.
 std::ostream& operator <<(std::ostream& os, const Grafo& G);
 
 #endif   // GRAFO_LIS_ADY_H

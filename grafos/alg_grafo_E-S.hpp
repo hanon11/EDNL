@@ -34,10 +34,10 @@ Sobrecarga de operadores:
 
 #ifndef ALG_GRAFO_E_S_H
 #define ALG_GRAFO_E_S_H
-#include "grafoPMC.h"  // grafo ponderado
+#include "grafoPMC.hpp"  // grafo ponderado
 #include <vector>
-#include "matriz.h"    // matriz cuadrada
-#include "listaenla.h" // para mostrar listas de vértices
+#include "matriz.hpp"    // matriz cuadrada
+#include "listaenla.hpp" // para mostrar listas de vértices
 #include <ostream>
 
 using std::ostream;

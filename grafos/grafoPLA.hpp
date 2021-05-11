@@ -5,35 +5,35 @@
 /*                  ponderado.                            */
 /*                                                        */
 /* Estructuras de Datos no Lineales                       */
-/* ©2016 José Fidel Argudo                                */
+/* ï¿½2016 Josï¿½ Fidel Argudo                                */
 /*--------------------------------------------------------*/
 /*
-Tipos públicos:
+Tipos pï¿½blicos:
 
    GrafoP<T>::tCoste            // tipo de los pesos de las aristas
    GrafoP<T>::vertice       // valores entre 0 y Grafo::numVert()-1
-   GrafoP<T>::tCamino // secuencia de vértices que forman un camino
-   GrafoP<T>::vertice_coste            // vértice adyacente y coste
-      Miembros públicos:
+   GrafoP<T>::tCamino // secuencia de vï¿½rtices que forman un camino
+   GrafoP<T>::vertice_coste            // vï¿½rtice adyacente y coste
+      Miembros pï¿½blicos:
          vertice v;
          tCoste c;
-         // Comparación
+         // Comparaciï¿½n
          bool operator ==(const vertice_coste& vc) const;
 
-Atributo público:
+Atributo pï¿½blico:
 
    static const tCoste GrafoP<T>::INFINITO = std::numeric_limits<T>::max();
-      Máximo del rango de valores de tCoste. Peso de una arista inexistente.
+      Mï¿½ximo del rango de valores de tCoste. Peso de una arista inexistente.
 
-Métodos públicos:
+Mï¿½todos pï¿½blicos:
 
    explicit GrafoP(size_t n);
-      Grafo ponderado de n vértices sin aristas.
+      Grafo ponderado de n vï¿½rtices sin aristas.
 
    explicit GrafoP(const std::string& nf);
-      Grafo ponderado extraído desde un fichero de texto de nombre
-      nf, que contiene el número de vértices seguido en cada línea
-      de un vértice, el carácter ':' y la lista de sus adyacentes
+      Grafo ponderado extraï¿½do desde un fichero de texto de nombre
+      nf, que contiene el nï¿½mero de vï¿½rtices seguido en cada lï¿½nea
+      de un vï¿½rtice, el carï¿½cter ':' y la lista de sus adyacentes
       junto a los costes asociados, separado todo ello por espacios.
       Ejemplo:
       5
@@ -44,17 +44,17 @@ Métodos públicos:
       4: 2 5
 
    size_t numVert() const;
-      Número de vértices
+      Nï¿½mero de vï¿½rtices
 
    const Lista<vertice_coste>& adyacentes(vertice v) const;
    Lista<vertice_coste>& adyacentes(vertice v);
-      Vértices adyacentes a v junto a pesos de las aristas.
+      Vï¿½rtices adyacentes a v junto a pesos de las aristas.
 
 Sobrecarga de operador externo:
 
    template <typename T>
    std::ostream& operator <<(std::ostream& os, const GrafoP<T>& G);
-      Inserción de un grafo ponderado en un flujo de salida.
+      Inserciï¿½n de un grafo ponderado en un flujo de salida.
 
 ----------------------------------------------------------*/
 
@@ -66,7 +66,7 @@ Sobrecarga de operador externo:
 #include <sstream>
 #include <string>
 #include <ostream>
-#include "listaenla.h"
+#include "listaenla.hpp"
 
 using std::vector;
 
@@ -94,7 +94,7 @@ private:
    vector< Lista<vertice_coste> > ady;
 };
 
-// Definición de INFINITO
+// Definiciï¿½n de INFINITO
 template <typename T>
 const T GrafoP<T>::INFINITO = std::numeric_limits<T>::max();
 
@@ -108,7 +108,7 @@ GrafoP<T>::GrafoP(const std::string& nf)
    tCoste p;
    vertice_coste vc;
    std::ifstream fg(nf);           // apertura del fichero
-   unsigned n;                     // núm. vértices
+   unsigned n;                     // nï¿½m. vï¿½rtices
 
    fg >> n;
    ady = vector< Lista<vertice_coste> >(n);
@@ -122,7 +122,7 @@ GrafoP<T>::GrafoP(const std::string& nf)
    fg.close();                     // cierre del fichero
 }
 
-// Inserción de un grafo ponderado en un flujo de salida.
+// Inserciï¿½n de un grafo ponderado en un flujo de salida.
 template <typename T>
 std::ostream& operator <<(std::ostream& os, const GrafoP<T>& G)
 {

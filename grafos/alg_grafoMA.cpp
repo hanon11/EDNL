@@ -8,9 +8,9 @@
 /* ©2016 José Fidel Argudo                                */
 /*--------------------------------------------------------*/
 
-#include "alg_grafoMA.h"
-#include "pilaenla.h"  // requerido por Profundidad2()
-#include "colaenla.h"  // requerido por Anchura()
+#include "alg_grafoMA.hpp"
+#include "pilaenla.hpp"  // requerido por Profundidad2()
+#include "colaenla.hpp"  // requerido por Anchura()
 
 using namespace std;
 

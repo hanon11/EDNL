@@ -31,9 +31,9 @@ Funciones:
 
 #ifndef ALG_GRAFO_H
 #define ALG_GRAFO_H
-#include "grafoMA.h"   // grafo no ponderado
-#include "matriz.h"    // requerido por Warshall
-#include "listaenla.h" // requerido por recorridos
+#include "grafoMA.hpp"   // grafo no ponderado
+#include "matriz.hpp"    // requerido por Warshall
+#include "listaenla.hpp" // requerido por recorridos
 
 
 matriz<bool> Warshall(const Grafo& G);
