@@ -96,7 +96,9 @@ vector<tCoste> DijkstraInv(const GrafoP<tCoste>& G,
    vector<tCoste> D;                          // Costes mínimos desde destino.
 
    // Iniciar D y P con caminos directos desde el vértice destino
-   D = G[destino];
+   for (std::size_t i = 0; i < n; i++) // Iniciar D al destino
+      D[i] = G[i][destino];
+
    D[destino] = 0;                             // Coste destino-destino es 0.
    P = vector<vertice>(n, destino);
    S[destino] = true;
@@ -112,8 +114,9 @@ vector<tCoste> DijkstraInv(const GrafoP<tCoste>& G,
       S[w] = true;                          // Incluir vértice w en S.
       
       for (v = 0; v < n; v++)
-         if (!S[v]) {
-            tCoste vwD = suma(G[w][v], D[w]);
+         if (!S[v]) 
+         {
+            tCoste vwD = suma(G[v][w], D[w]);
             if (vwD < D[v]) {
                D[v] = vwD;
                P[v] = w;
