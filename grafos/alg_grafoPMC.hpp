@@ -96,12 +96,10 @@ vector<tCoste> DijkstraInv(const GrafoP<tCoste> &G, typename GrafoP<tCoste>::ver
    const size_t n = G.numVert();
    vector<bool> S(n, false);
    vector<tCoste> D(n);
-
    for (size_t i = 0; i < n; i++) // Iniciar D al destino
    {
       D[i] = G[i][destino];
    }
-
    D[destino] = 0; // Coste destino-destino 0
 
    // Calcular caminos de coste mínimo hasta cada vértice.
