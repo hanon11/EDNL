@@ -1,4 +1,5 @@
-#include "../alg_grafoPMC.hpp"
+
+#include "floydModificado.hpp"
 #include <iostream>
 
 template <typename tCoste>
@@ -6,15 +7,16 @@ bool aciclico(const GrafoP<tCoste>& G)
 {
     typedef typename GrafoP<tCoste>::vertice vertice;
     matriz<vertice> mVertices(G.numVert());
-    matriz<tCoste> mCostes = Floyd(G, mVertices);
+    matriz<tCoste> mCostes = FloydMod(G, mVertices);
     std::cout << mCostes << std::endl;
-    for(vertice i = 0; i < G.numVert(); i++)
+    bool acicl = true; //parto de que es aciclico hasta que demuestre lo contrario
+    for(vertice i = 0; i < G.numVert() && acicl; i++)
     {
-        for(vertice j = 0; j < G.numVert(); j++)
+        for(vertice j = 0; j < G.numVert() && acicl; j++)
         {
-            if(mCostes[i][j] == GrafoP<tCoste>::INFINITO) //en cuanto encuentre un infinito ya es aciclico
-                return true;
+            if(i == j && mCostes[i][j] != GrafoP<tCoste>::INFINITO)
+                acicl = false;
         }
     }
-    return false;
+    return acicl;
 }
