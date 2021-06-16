@@ -14,7 +14,7 @@ void origenDestino(const GrafoP<tCoste>& tren, const GrafoP<tCoste>& bus,
     tCoste min = std::min(mCosteTren[cambio1]+mCosteBus[cambio1], mCosteTren[cambio2]+mCosteBus[cambio2]);
     std::cout << "El coste de la ruta es: " << min << std::endl;
     if(min == mCosteTren[cambio1]+mCosteBus[cambio1])
-      std::cout << "La ruta a seguir es: " << origen << ", " << cambio1 << ", " << destino << std::endl;
+        std::cout << "La ruta a seguir es: " << origen << ", " << cambio1 << ", " << destino << std::endl;
     else
-      std::cout << "La ruta a seguir es: " << origen << ", " << cambio2 << ", " << destino << std::endl;
+        std::cout << "La ruta a seguir es: " << origen << ", " << cambio2 << ", " << destino << std::endl;
 }
