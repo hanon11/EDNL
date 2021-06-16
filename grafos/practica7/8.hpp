@@ -22,5 +22,5 @@ void unSoloTrasbordo(const GrafoP<tCoste>& tren, const GrafoP<tCoste>& bus,
         if(i != origen || i != destino)
             minimo = std::min(minimo, std::min(suma(costeTren[i],costeBusInv[i]), suma(costeBus[i],costeTrenInv[i])));
     }
-    std::cout << minimo << '\n';
+    std::cout << "El precio minimo del viaje es: " << minimo << '\n';
 }
