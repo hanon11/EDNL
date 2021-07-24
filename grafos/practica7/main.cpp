@@ -1,14 +1,18 @@
 #include "../alg_grafoPMC.hpp"
 #include "../alg_grafo_E-S.hpp"
 #include "1.hpp"
-#include "2.hpp"
+//#include "2.hpp"
 #include "3.hpp"
 #include "4.hpp"
 #include "5.hpp"
-#include "6.hpp"
+//#include "6.hpp"
 #include "7.hpp"
 #include "8.hpp"
 #include "9.hpp"
+#include "10.hpp"
+#include "11.hpp"
+#include "12.hpp"
+#include "laberinto3D.hpp"
 int main()
 {
     /*GrafoP<unsigned> G1("1.dat");
@@ -30,6 +34,11 @@ int main()
         std::cout << "Fila: " << pos->fila << " Columna: " << pos->columna <<std::endl;
         pos++;
     }*/
+    casilla c1(0,0,0), c2(2,2, 2);
+    vector<std::size_t> piedras;
+    piedras.insert(piedras.begin(), 9);
+    piedras.insert(piedras.begin(), 24);
+    laberinto3D(3, piedras, c1, c2);
     /*GrafoP<double> G3("3.dat");
     vector<unsigned> almacenamiento;
     almacenamiento.insert(almacenamiento.begin(), 100);
@@ -69,8 +78,29 @@ int main()
     GrafoP<unsigned> bus("8bus.dat");
     GrafoP<unsigned>::vertice origen = 0, destino = 3;
     unSoloTrasbordo(tren, bus, origen, destino);*/
-    GrafoP<unsigned> tren("8tren.dat");
+    /*GrafoP<unsigned> tren("8tren.dat");
     GrafoP<unsigned> bus("8bus.dat");
     GrafoP<unsigned>::vertice origen = 0, destino = 3;
-    calculaCamino(tren, bus, origen, destino, 3);
+    calculaCamino(tren, bus, origen, destino, 3);*/
+    /*GrafoP<unsigned> isla1("11isla1.dat");
+    GrafoP<unsigned> isla2("11isla2.dat");
+    GrafoP<unsigned> isla3("11isla3.dat");
+    vector<puente<unsigned> > puentes;
+    puente<unsigned> p1; p1.ciudad1 = 0; p1.ciudad2 = 3;
+    puentes.insert(puentes.begin(), p1);
+    calculoHuries(isla1, isla2, isla3, puentes);*/
+    /*GrafoP<unsigned> tren("10tren.dat");
+    GrafoP<unsigned> bus("10bus.dat");
+    GrafoP<unsigned> avion("10avion.dat");
+    GrafoP<unsigned>::vertice origen = 0, destino = 3;
+    viaje(tren, bus, avion, (unsigned)3, (unsigned)2, origen, destino);
+    //ViajeTriple(0, 3, 3, 2);
+    GrafoP<unsigned> fobos("fobos.dat");
+    GrafoP<unsigned> deimos("deimos.dat");
+    vector<GrafoP<unsigned>::vertice> costerasFobos, costerasDeimos;
+    costerasDeimos.insert(costerasDeimos.begin(), 0);
+    costerasFobos.insert(costerasFobos.begin(), 2);
+    std::cout << "Luxita la truxita:\n";
+    grecoland(fobos, deimos, costerasFobos, costerasDeimos);*/
+    
 }
