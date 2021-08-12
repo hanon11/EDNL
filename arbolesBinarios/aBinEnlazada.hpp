@@ -82,6 +82,8 @@ inline void Abin<T>::eliminarHijoIzqdo(nodo n)
     assert(n != NODO_NULO);
     assert(n->hizq != NODO_NULO); //existe hijo izq
     assert(n->hizq->hizq == NODO_NULO && n->hizq->hder == NODO_NULO); //hijo izq es hoja 
+    delete n->hizq;
+    n->hizq = NODO_NULO;
 }
 
 
