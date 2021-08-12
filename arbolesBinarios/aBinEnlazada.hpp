@@ -92,7 +92,7 @@ inline void Abin<T>::eliminarHijoDrcho(nodo n)
 {
     assert(n != NODO_NULO);
     assert(n->hder != NODO_NULO); //existe hijo der
-    assert(n->hder->hizq == NODO_NULO && n->hizq->hder == NODO_NULO); //hijo der es hoja 
+    assert(n->hder->hizq == NODO_NULO && n->hder->hder == NODO_NULO); //hijo der es hoja 
     delete n->hder;
     n->hder = NODO_NULO;
 }
