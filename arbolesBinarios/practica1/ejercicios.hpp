@@ -5,7 +5,6 @@
 template<typename T>
 unsigned numNodos(const Abin<T>& A)
 {
-
     return numNodos_Rec(A.raiz(), A);
 }
 
