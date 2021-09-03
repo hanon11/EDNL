@@ -43,7 +43,7 @@ int profundidad(typename Abin<T>::nodo n, const Abin<T>& A)
 {
     int profundidad = 0;
 
-    while (n != A.raiz())
+    while(n != A.raiz())
     {
         profundidad++;
         n = A.padre(n);
@@ -55,7 +55,7 @@ int profundidad(typename Abin<T>::nodo n, const Abin<T>& A)
 template <typename T>
 int profundidadRec(typename Abin<T>::nodo n, const Abin<T>& A)
 {
-    if (n == Abin<T>::NODO_NULO)
+    if(n == Abin<T>::NODO_NULO)
         return -1;
     else 
         return 1 + profundidadRec(A.padre(n), A);
@@ -67,7 +67,7 @@ int profundidadRec(typename Abin<T>::nodo n, const Abin<T>& A)
 template <typename T>
 int desequilibrio(const Abin<T>& A)
 {
-    if (A.arbolVacioB())
+    if(A.arbolVacioB())
         return 0;
     else
         return desequilibrio_rec(A, A.raizB());
@@ -77,7 +77,7 @@ int desequilibrio(const Abin<T>& A)
 template <typename T>
 int desequilibrio_rec(const Abin<T>& A, typename Abin<T>::nodo n)
 {
-    if (n == Abin<T>::NODO_NULO)
+    if(n == Abin<T>::NODO_NULO)
         return 0;
     else
         return std::max(std::abs(A.altura(A.hijoDrcho(A)) - A.altura(A.hijoIzqdo(A))), std::max(desequilibrio_rec(A, A.hijoDrcho(A)),desequilibrio_rec(A,A.hijoIzqdo(A))));
@@ -93,16 +93,17 @@ bool pseudocompleto(Abin<T>& A)
 template <typename T>
 bool pseudocompletoRec(typename Abin<T>::nodo n, Abin<T>& A)
 {
-    if (A.altura(n) == -1) //es nodo nulo
-            return true;
-    else if (A.altura(n) == 1)//si es hoja
-            return (A.hijoDrcho(n) != Abin<T>::NODO_NULO && A.hijoIzqdo(n) != Abin<T>::NODO_NULO);
+    if(n == Abin<T>::NODO_NULO)
+        return true;
+    else if(A.altura(n) == 0) //es hoja
+        return true;
+    else if(A.altura(n) == 1 && (A.hijoIzqdo(n) == Abin<T>::NODO_NULO && A.hijoDrcho(n) != Abin<T>::NODO_NULO ||
+            A.hijoIzqdo(n) != Abin<T>::NODO_NULO && A.hijoDrcho(n) == Abin<T>::NODO_NULO))
+        return false;
     else
     {
         if(A.altura(A.hijoDrcho(n)) == A.altura(A.hijoIzqdo(n)))
-        {
             return (pseudocompletoRec(A.hijoIzqdo(n), A) && pseudocompletoRec(A.hijoDrcho(n), A));
-        }
         else
         {
             if(A.altura(A.hijoDrcho(n)) > A.altura(A.hijoIzqdo(n)))
