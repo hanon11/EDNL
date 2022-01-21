@@ -8,10 +8,6 @@ void distribucion(GrafoP<tCoste>& G, GrafoP<double>::vertice fabrica,
     vector<typename GrafoP<tCoste>::vertice> vVer(G.numVert());
     vector<tCoste> vCoste(G.numVert());
     vCoste = Dijkstra(G, fabrica, vVer);
-    for(int i = 0; i < vCoste.size(); i++)
-    {
-        std::cout << vCoste[i] << " ";
-    }
     std::cout << std::endl;
     for(int i = 0; i < vCoste.size(); ++i)
     {

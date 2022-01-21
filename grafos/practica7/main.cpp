@@ -34,11 +34,12 @@ int main()
         std::cout << "Fila: " << pos->fila << " Columna: " << pos->columna <<std::endl;
         pos++;
     }*/
+    /*
     casilla c1(0,0,0), c2(2,2, 2);
     vector<std::size_t> piedras;
     piedras.insert(piedras.begin(), 9);
     piedras.insert(piedras.begin(), 24);
-    laberinto3D(3, piedras, c1, c2);
+    laberinto3D(3, piedras, c1, c2);*/
     /*GrafoP<double> G3("3.dat");
     vector<unsigned> almacenamiento;
     almacenamiento.insert(almacenamiento.begin(), 100);
@@ -51,7 +52,7 @@ int main()
     porcentajes.insert(porcentajes.end(), 10);
     porcentajes.insert(porcentajes.end(), 100);
     distribucion(0, 23, G3, almacenamiento, porcentajes);*/
-    /*GrafoP<unsigned> G4("4.dat");
+    GrafoP<unsigned> G4("4.dat");
     parte p1;
     p1.carga = 3;
     p1.destino = 2;
@@ -59,7 +60,7 @@ int main()
     partes.insert(partes.begin(), p1);
     GrafoP<unsigned>::vertice capital = 0;
     unsigned total = cementosZuelandia(G4, partes, capital);
-    std::cout << total << std::endl;  */
+    std::cout << total << std::endl;  
     /*GrafoP<unsigned> avion("5avion.dat");
     GrafoP<unsigned> tren("5tren.dat");
     GrafoP<unsigned> carretera("5carretera.dat");

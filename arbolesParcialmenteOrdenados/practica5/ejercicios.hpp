@@ -2,7 +2,6 @@
 #include "../apo.hpp"
 #include "../../arbolesBinarios/aBinEnlazada.hpp"
 #include "../../arbolesGenerales/aGenEnlazada.hpp"
-#include <bits/stdc++.h>
 
 bool hoja(typename Abin<int>::nodo n, Abin<int>& A)
 {
@@ -83,6 +82,7 @@ bool ternario(const Agen<T>& A)
 template <typename T>
 bool ternarioRec(typename Agen<T>::nodo n, const Agen<T>& A)
 {
+    //todos los nodos son hoja o tienen 3 hijos
     if(n == Agen<T>::NODO_NULO)
         return true;
     else
@@ -92,7 +92,14 @@ bool ternarioRec(typename Agen<T>::nodo n, const Agen<T>& A)
         else if(numHijos(n, A) != 3)
             return false;
         else 
-            return (ternarioRec(A.hijoIzqdo(n)) && ternarioRec(A.hermDrcho(A.hijoIzqdo(n))) && ternarioRec(A.hermDrcho(A.hermDrcho(A.hijoIzqdo(n)))));
+        {
+            typename Agen<T>::nodo hijo = A.hijoIzqdo(n);
+            while(hijo != Agen<T>::NODO_NULO)
+            {
+                return ternarioRec(hijo, A);
+                hijo = A.hermDrcho(hijo);
+            }
+        }
     }
 }
 

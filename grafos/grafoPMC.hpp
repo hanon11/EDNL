@@ -109,7 +109,7 @@ private:
    vector< vector<tCoste> > costes;
 };
 
-// Definici�n de INFINITO
+// Definición de INFINITO
 template <typename T>
 const T GrafoP<T>::INFINITO = std::numeric_limits<T>::max();
 

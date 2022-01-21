@@ -26,6 +26,7 @@ public:
     Agen(const Agen<T> &a); // ctor. de copia
     Agen<T> &operator=(const Agen<T> &a);
     ~Agen(); // destructor
+    unsigned altura(nodo n) const;
 private:
     struct celda
     {
@@ -38,6 +39,26 @@ private:
     nodo copiar(nodo n);
 };
 
+template <typename T>
+unsigned Agen<T>::altura(nodo n) const
+{
+    typename Agen<T>::nodo hijo = this->hijoIzqdo(n);
+    int max = 0, alt;
+    if (hijo != Agen<T>::NODO_NULO)
+    {
+        max = 1 + altura(hijo);
+        hijo = this->hermDrcho(hijo);
+        while (hijo != Agen<T>::NODO_NULO)
+        {
+            alt = 1 + altura(hijo);
+            if (max < alt)
+                max = alt;
+
+            hijo = this->hermDrcho(hijo);
+        }
+    }
+    return max;
+}
 /* Definición del nodo nulo */
 template <typename T>
 const typename Agen<T>::nodo Agen<T>::NODO_NULO(nullptr);
